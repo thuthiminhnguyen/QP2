@@ -1,0 +1,64 @@
+\documentclass[11pt]{article}
+\usepackage{shortex}
+\usepackage[round]{natbib}
+\usepackage[margin=2.5cm]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{subcaption}
+\usepackage{float} % Required for the [H] specifier
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{url}
+\renewcommand{\url}[1]{}
+
+\usepackage{hyperref}
+\gdef\appendixname{Appendix}
+\gdef\sectionautorefname{\appendixname} 
+
+\let\argmin\relax\DeclareMathOperator*{\argmin}{argmin}
+\let\argmax\relax\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\minimize}{minimize}
+\DeclareMathOperator*{\maximize}{maximize}
+\DeclareMathOperator{\subjto}{\ \text{subject to}\ }
+\renewcommand{\top}{\mathsf{T}}
+\renewcommand{\d}{\mathsf{d}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{
+  \large Qualifying Paper 2 \\[0.5em] 
+  \LARGE Unbiased and consistent nested sampling via sequential Monte Carlo
+}
+\author{Thu Nguyen} % replace with your name
+\date{December 7, 2026} % replace with your submission date
+
+% start of document
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\section{Summary of the Qualifying Paper}\label{sec:summary} %5 pages%
+% Problem -> Solution
+
+% Summarize the problem the paper addresses in the context of previous work
+% Limitations of previous work
+% The solution technique 
+% Important results
+% Why they are important
+% Limitations of the paper
+\subsection{Motivation}
+
+\citep{10.1093/jrsssb/qkaf015}
+
+% \section{Declaration of AI Assistance}
+% I used generative AI models (Gemini and Claude) to improve my understanding of mathematical concepts, assist with code development, and check the grammar of my original writing. I reviewed all of the outputs and take full responsibility for the content in this report.
+
+\appendix
+% \section{Comparison of the Logarithmic Score and Continuous Ranked Probability Score on i.i.d.\ Data}\label{sec:log-crps}
+
+\bibliographystyle{rss}
+\bibliography{qp.bib}
+
+\end{document}

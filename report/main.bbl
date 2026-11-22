@@ -1,0 +1,11 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL: }\fi
+
+\bibitem[{Salomone et~al.(2025)Salomone, South, Drovandi, Kroese and Johansen}]{10.1093/jrsssb/qkaf015}
+Salomone, R., South, L.~F., Drovandi, C., Kroese, D.~P. and Johansen, A.~M. (2025) Unbiased and consistent nested sampling via sequential monte carlo.
+\newblock \textit{Journal of the Royal Statistical Society Series B: Statistical Methodology}, \textbf{87}, 1221--1238.
+
+\end{thebibliography}
