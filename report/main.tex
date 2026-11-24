@@ -31,8 +31,8 @@
   \large Qualifying Paper 2 \\[0.5em] 
   \LARGE Unbiased and consistent nested sampling via sequential Monte Carlo
 }
-\author{Thu Nguyen} % replace with your name
-\date{December 7, 2026} % replace with your submission date
+\author{Thu Nguyen} 
+\date{December 7, 2026} 
 
 % start of document
 \begin{document}
@@ -40,23 +40,78 @@
 \tableofcontents
 \newpage
 \section{Summary of the Qualifying Paper}\label{sec:summary} %5 pages%
-% Problem -> Solution
+\subsection{Motivation}
+% Consider the integrals of the following form:
+% \begin{equation}\label{eq:int}
+%     \pi(\varphi)=\mathbb{E}_{\pi}\varphi(\mathbf{X})=\int_{E}\varphi(\mathbf{x})\pi(\mathbf{x})d\mathbf{x},
+% \end{equation}
+% where $\pi$ is the probability density on $E\subseteq \mathbb{R}^d$, $\mathbf{X}$ is a random variable with probability density $\pi$, and $\varphi:E\to\mathbb{R}$ is a $\pi-$integrable function. 
 
+In Bayesian inference and model comparison, a central computational task is to characterize a posterior distribution over a parameter vector $\mathbf{x} \in E \subseteq \mathbb{R}^d$ while simultaneously evaluating its normalizing constant (or marginal likelihood). Specifically, given a prior density $\eta$ and a non-negative likelihood function $\mathcal{L}: E \to \mathbb{R}_{\geq 0}$, we consider the posterior density
+\begin{equation}\label{eq:post_full}
+    \pi(\mathbf{x}) = \frac{\gamma(\mathbf{x})}{Z} = \frac{\mathcal{L}(\mathbf{x})\eta(\mathbf{x})}{Z},
+\end{equation}
+where $\gamma(\mathbf{x}) = \mathcal{L}(\mathbf{x})\eta(\mathbf{x})$ is the unnormalized target density and
+\begin{equation}
+    Z = \int_E \mathcal{L}(\mathbf{x})\eta(\mathbf{x})\,\mathrm{d}\mathbf{x}
+\end{equation}
+is the normalizing constant. To estimate these two quantities, Markov Chain Monte Carlo (MCMC) is commonly used. 
+In particular, one simulates an ergodic Markov chain with invariant density $\pi$, yielding approximate draws from $\pi$ after a sufficiently long burn-in phase.
+Then $\pi(\mathbf{x})$ can be estimated by the empirical distribution of these samples. 
+Despite its widespread success, MCMC can struggle to explore complex or multimodal posterior distributions effectively.
+This motivates the development of Nested Sampling (NS) and Sequential Monte Carlo (SMC). 
+
+NS is proposed by \cite{10.1214/06-BA127} to estimate the normalizing constant $Z$  by maintaining an ensemble of sample points, and generating new points from progressively constrained or nested versions of prior. 
+Specifically, 
+However, one of the significant drawback of NS is that it requires of generating perfect and independent samples from the constrained distributions at each iteration. 
+% Problem with NS -> Solution
+
+SMC samplers, introduced by \cite{10.1111/j.1467-9868.2006.00553.x}, are a general methodology that traverses a population of particles through a sequence of distributions using reweighting, resampling, and mutation steps. 
+We focus on the case where all sampling distributions live on the same space $E$. 
+One can sample from the density $\pi$ by introducing a sequence of intermediate targets that smoothly bridge the prior and posterior densities via an inverse temperature schedule $0 = \delta_0 < \dots < \delta_T = 1$, given by $\pi_t(\mathbf{x}) \propto \eta(\mathbf{x})\mathcal{L}(\mathbf{x})^{\delta_t}$.
+Nevertheless, 
+
+\cite{10.1093/jrsssb/qkaf015} proposed two NS-based SMC algorithms, NS-SMC and adaptive NS-SMC. 
+These two algorithms are derived differently from the original NS and do not assume independent samples are produced at each iteration as in the origin NS algorithm.
 % Summarize the problem the paper addresses in the context of previous work
 % Limitations of previous work
 % The solution technique 
+
+In this report, we concentrate on the spike-and-slab (phase transition) experiment in estimating the normalizing constant in Section 6.1 of \cite{10.1093/jrsssb/qkaf015}.
+
+\subsection{ANS-SMC and NS-SMC}
 % Important results
 % Why they are important
+
+\subsection{Survival Parameter $\alpha$}
 % Limitations of the paper
-\subsection{Motivation}
 
-\citep{10.1093/jrsssb/qkaf015}
+\subsection{Critical Analysis and Limitations}
+\begin{itemize}
+    \item Sensitivity to the adaptation parameter $\alpha$: While the paper suggests several candidate values for $\alpha$, it remains unclear how different choices affect the resulting threshold schedule and the variance or accuracy of the log-evidence estimator.
+    \item Choice and coverage of the prior $\eta(\mathbf{x})$: Selecting an initial distribution $\eta(\mathbf{x})$ that adequately covers the parameter space---particularly high-likelihood regions---is crucial, as poor coverage can degrade sampling efficiency.
+    \item Sensitivity to proposal step size: In the spike-and-slab experiment, the choice of step size in the proposal distribution has a significant impact on the empirical performance of ATA-SMC.
+    \item Likelihood plateaus: Similar to standard nested sampling, ANS-SMC and NS-SMC may encounter difficulties when the likelihood function exhibits flat regions or plateaus \citep{10.1214/23-SS144}.
+\end{itemize}
 
-% \section{Declaration of AI Assistance}
+% How to derive normalizing constant for other dimension
+\section{Algorithmic and Dimensionality Analysis}
+All code for analysis and proposal are available \href{https://github.com/thuthiminhnguyen/QP2}{here}.
+\subsection{Initial Comparison: ATA-SMC vs. ANS-SMC and NS-SMC}
+Acceptance rate between ATA-SMC and ANS-SMC
+\subsection{Performance in Lower Parameter Dimensions}
+% Finding normalizing constant when d is even
+\section{Mini-Project: Divergence Diagnostics for ANS-SMC and Step-Size Adaptation for ATA-SMC}
+\subsection{Incremental Rényi-2 Divergence Across ANS-SMC Level Sets for Varying Survival Parameter $\alpha$}
+% Interpretation
+% Increase alpha to get a denser schedule for l_t 
+\subsection{Adaptive Proposal Step Size for ATA-SMC}
+
+\section{Declaration of AI Assistance}
 % I used generative AI models (Gemini and Claude) to improve my understanding of mathematical concepts, assist with code development, and check the grammar of my original writing. I reviewed all of the outputs and take full responsibility for the content in this report.
 
 \appendix
-% \section{Comparison of the Logarithmic Score and Continuous Ranked Probability Score on i.i.d.\ Data}\label{sec:log-crps}
+% \section{}\label{sec:}
 
 \bibliographystyle{rss}
 \bibliography{qp.bib}

@@ -1,11 +1,23 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{4}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
 \expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL: }\fi
 
+\bibitem[{Buchner(2023)}]{10.1214/23-SS144}
+Buchner, J. (2023) {Nested sampling methods}.
+\newblock \textit{Statistics Surveys}, \textbf{17}, 169 -- 215.
+
+\bibitem[{Del~Moral et~al.(2006)Del~Moral, Doucet and Jasra}]{10.1111/j.1467-9868.2006.00553.x}
+Del~Moral, P., Doucet, A. and Jasra, A. (2006) Sequential monte carlo samplers.
+\newblock \textit{Journal of the Royal Statistical Society Series B: Statistical Methodology}, \textbf{68}, 411--436.
+
 \bibitem[{Salomone et~al.(2025)Salomone, South, Drovandi, Kroese and Johansen}]{10.1093/jrsssb/qkaf015}
 Salomone, R., South, L.~F., Drovandi, C., Kroese, D.~P. and Johansen, A.~M. (2025) Unbiased and consistent nested sampling via sequential monte carlo.
 \newblock \textit{Journal of the Royal Statistical Society Series B: Statistical Methodology}, \textbf{87}, 1221--1238.
+
+\bibitem[{Skilling(2006)}]{10.1214/06-BA127}
+Skilling, J. (2006) {Nested sampling for general Bayesian computation}.
+\newblock \textit{Bayesian Analysis}, \textbf{1}, 833 -- 859.
 
 \end{thebibliography}
